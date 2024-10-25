@@ -259,3 +259,14 @@ input[type="radio"]:checked + label {
 #goBack a:hover {
     background-color: #0056b3;
 }
+.submit1 {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 730px;
+    margin-bottom: 107px;
+}
