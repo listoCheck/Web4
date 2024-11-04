@@ -22,7 +22,8 @@ function App() {
                     <Reg/>
                     <button type="submit" className="submit">Зарегистрироваться</button>
                     <button onClick={handleRegisterClick} className="submit">Войти</button>
-                </div>}
+                </div>
+            }
             <Footer/>
         </div>
     );

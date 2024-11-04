@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setX, setY, setR } from '../store/store';
 import { ResultTable } from "./ResultTable";
 import popal from '../images/krya.mp3';
 import mimo from '../images/lego-breaking.mp3';
 import attention from '../images/reserve.mp3';
 
 export function Body() {
-    const [selectedX, setSelectedX] = useState('0');
-    const [selectedY, setSelectedY] = useState('0');
-    const [selectedR, setSelectedR] = useState('1');
+    const dispatch = useDispatch();
+    const selectedX = useSelector((state) => state.body.selectedX);
+    const selectedY = useSelector((state) => state.body.selectedY);
+    const selectedR = useSelector((state) => state.body.selectedR);
 
     const [pointer, setPointer] = useState({ cx: 200, cy: 200, visible: false });
 
-    // Функции для обработки изменения X и Y
     const handleXChange = (event) => {
-        setSelectedX(event.target.value);
+        dispatch(setX(event.target.value));
     };
 
     const handleYChange = (event) => {
-        setSelectedY(event.target.value);
+        dispatch(setY(event.target.value));
     };
 
     const handleRChange = (event) => {
-        setSelectedR(event.target.value);
+        dispatch(setR(event.target.value));
     };
 
     useEffect(() => {
@@ -40,8 +42,8 @@ export function Body() {
         const clickX = event.clientX - rect.left;
         const clickY = event.clientY - rect.top;
 
-        setSelectedX(((clickX - 200) / 150 * selectedR).toFixed(2));
-        setSelectedY(((200 - clickY) / 150 * selectedR).toFixed(2));
+        dispatch(setX(((clickX - 200) / 150 * selectedR).toFixed(2)));
+        dispatch(setY(((200 - clickY) / 150 * selectedR).toFixed(2)));
     };
 
     return (
@@ -80,7 +82,7 @@ export function Body() {
                 <tr>
                     <td>Введите Y:</td>
                     <td>
-                        <input required name="Y" type="text" placeholder="(от -3 до 3)" maxLength="3" value={selectedY}
+                        <input required name="Y" type="text" placeholder="(от -3 до 3)" maxLength="4" value={selectedY}
                                onChange={handleYChange}/>
                     </td>
                 </tr>
